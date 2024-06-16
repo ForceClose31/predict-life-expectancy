@@ -4,30 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prediksi Harapan Hidup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Prediksi Harapan Hidup</h1>
-    <form action="/predict" method="post">
-        <label for="age">Umur:</label>
-        <input type="number" id="age" name="age" required><br><br>
+    <div class="container">
+        <h1>Prediksi Harapan Hidup</h1>
+        <form action="/predict" method="post">
+            <label for="age">Umur:</label>
+            <input type="number" id="age" name="age" required><br>
 
-        <label for="height">Tinggi Badan (cm):</label>
-        <input type="number" id="height" name="height" required><br><br>
+            <label for="height">Tinggi Badan (cm):</label>
+            <input type="number" id="height" name="height" required><br>
 
-        <label for="weight">Berat Badan (kg):</label>
-        <input type="number" id="weight" name="weight" required><br><br>
+            <label for="weight">Berat Badan (kg):</label>
+            <input type="number" id="weight" name="weight" required><br>
 
-        <label for="gender">Jenis Kelamin:</label>
-        <select id="gender" name="gender" required>
-            <option value="1">Laki-laki</option>
-            <option value="0">Perempuan</option>
-        </select><br><br>
+            <label for="gender">Jenis Kelamin:</label>
+            <select id="gender" name="gender" required>
+                <option value="1">Laki-laki</option>
+                <option value="0">Perempuan</option>
+            </select><br>
 
-        <input type="submit" value="Prediksi">
-    </form>
-    <br>
-    {% if prediction_text %}
-    <h2>{{ prediction_text }}</h2>
-    {% endif %}
+            <input type="submit" value="Predict">
+        </form>
+        {% if prediction_text and health_recommendation %}
+        <h2>{{ prediction_text }}</h2>
+        <h3>{{ health_recommendation }}</h3>
+        {% endif %}
+    </div>
 </body>
 </html>
