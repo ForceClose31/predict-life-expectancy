@@ -5,7 +5,6 @@ import pandas as pd
 
 app = Flask(__name__)
 
-# Memuat model yang telah dilatih
 model = joblib.load('life_expectancy_model.pkl')
 
 @app.route('/')
