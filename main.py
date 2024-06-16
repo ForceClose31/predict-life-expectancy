@@ -4,7 +4,6 @@ import joblib
 
 app = Flask(__name__)
 
-# Load the latest life expectancy model
 best_life_model = joblib.load('best_life_model.pkl')
 
 def categorize_health_status(bmi):
@@ -46,19 +45,17 @@ def predict():
 
     health_recommendation = get_health_recommendation(bmi_status)
 
-    # Predict life expectancy using the model
     predicted_life_expectancy = best_life_model.predict([[age, height, weight, gender, bmi]])[0]
 
-    # Adjust life expectancy based on BMI category
     def adjust_life_expectancy(prediction, bmi_status):
         if bmi_status == 'Underweight':
-            return prediction * 0.9  # Adjust for underweight
+            return prediction * 0.9  
         elif bmi_status == 'Overweight':
-            return prediction * 0.95  # Adjust for overweight
+            return prediction * 0.95 
         elif bmi_status == 'Obesity':
-            return prediction * 0.8  # Adjust for obesity
+            return prediction * 0.8
         else:
-            return prediction  # No adjustment for normal weight
+            return prediction 
 
     adjusted_predicted_life_expectancy = adjust_life_expectancy(predicted_life_expectancy, bmi_status)
 
